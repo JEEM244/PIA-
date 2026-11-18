@@ -68,9 +68,9 @@ require __DIR__ . '/includes/cabecera.php';
   <section class="catalogo contenedor">
     <div class="catalogo-cabecera">
       <div>
-        <p class="sobrelinea">PRODUCTOS DISPONIBLES</p>
-        <h2>Catálogo de productos</h2>
-        <p>Consulta herramientas, materiales, precios y existencias.</p>
+        <p class="sobrelinea">CATÁLOGO</p>
+        <h2>Herramientas y materiales</h2>
+        <p>Revisa los precios y la disponibilidad de cada artículo.</p>
       </div>
       <span class="contador-productos"><?= count($articulos) ?> artículos</span>
     </div>
@@ -78,14 +78,14 @@ require __DIR__ . '/includes/cabecera.php';
     <?php if ($busqueda !== ''): ?>
       <div class="resultado-busqueda">
         <span>Resultados para: <strong><?= h($busqueda) ?></strong></span>
-        <a href="catalogo.php">Limpiar búsqueda</a>
+        <a href="catalogo.php">Ver todo el catálogo</a>
       </div>
     <?php endif; ?>
 
     <?php if (!$articulos): ?>
       <div class="catalogo-vacio">
-        <strong>No encontramos productos.</strong>
-        <p>Prueba con otro nombre o palabra de búsqueda.</p>
+        <strong>No hay artículos con esa búsqueda.</strong>
+        <p>Intenta con otro nombre o una palabra más corta.</p>
       </div>
     <?php else: ?>
       <div class="productos-grid">
@@ -96,7 +96,7 @@ require __DIR__ . '/includes/cabecera.php';
               <?php if ($imagen): ?>
                 <img src="<?= h($imagen) ?>" alt="<?= h($articulo['nombre']) ?>">
               <?php else: ?>
-                <span class="sin-imagen">Imagen no disponible</span>
+                <span class="sin-imagen">Sin fotografía</span>
               <?php endif; ?>
             </div>
             <div class="producto-info">

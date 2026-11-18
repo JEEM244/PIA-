@@ -10,9 +10,10 @@ body{margin:0;background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif}
 .menu-publico a:hover{text-decoration:underline}
 .volver{color:#fff;text-decoration:none;font-size:14px}
 .portada{min-height:470px;background:#111;color:#fff;position:relative;isolation:isolate;display:flex;align-items:center;overflow:hidden;padding:70px max(calc((100% - 1120px)/2),24px)}
-/* Imagen principal de la ferretería */
-.portada::before{content:"";position:absolute;z-index:-1;inset:0;background:url("img/ferreteria.jpg") center 48%/cover no-repeat;opacity:.24}
-.portada::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,#111 0%,rgba(17,17,17,.92) 42%,rgba(17,17,17,.25) 100%)}
+/* La imagen queda delante del fondo negro y detrás del texto. */
+.portada::before{content:"";position:absolute;z-index:0;inset:0;background:url("img/ferreteria.jpg") center 48%/cover no-repeat;opacity:.58}
+.portada::after{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(17,17,17,.94) 0%,rgba(17,17,17,.72) 48%,rgba(17,17,17,.28) 100%)}
+.portada-contenido,.portada-numero{position:relative;z-index:2}
 .portada-contenido{max-width:610px}
 .portada-etiqueta{font-size:10px;font-weight:700;letter-spacing:2.5px;margin:0 0 22px}
 .portada h1{font-size:clamp(38px,6vw,66px);line-height:1.02;letter-spacing:-2.5px;margin:0 0 20px;max-width:600px}
@@ -79,6 +80,6 @@ th{color:#000;font-weight:700;background:#fff}
 .aviso{padding:12px 15px;border:1px solid #000;background:#fff;color:#000;margin-bottom:18px;font-size:13px}
 .aviso.error{background:#000;color:#fff}
 @media(max-width:900px){.productos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar-frase{display:none}}
-@media(max-width:760px){.tarjetas{grid-template-columns:repeat(2,1fr)}.formulario{grid-template-columns:1fr 1fr}.topbar{padding:0 18px}.contenedor{margin:38px auto}.portada{min-height:420px;padding:55px 24px}.portada::before{background-position:58% center;opacity:.18}}
+@media(max-width:760px){.tarjetas{grid-template-columns:repeat(2,1fr)}.formulario{grid-template-columns:1fr 1fr}.topbar{padding:0 18px}.contenedor{margin:38px auto}.portada{min-height:420px;padding:55px 24px}.portada::before{background-position:58% center;opacity:.52}}
 @media(max-width:520px){.productos-grid{grid-template-columns:1fr}.catalogo-encabezado{align-items:start;flex-direction:column}.menu-publico{gap:12px}.menu-publico a{font-size:11px}}
 @media(max-width:480px){.tarjetas,.formulario{grid-template-columns:1fr}.bienvenida h1,.bienvenida h2,.catalogo-encabezado h2,.encabezado-modulo h1{font-size:28px}.marca span{display:none}.portada h1{font-size:42px}.portada{min-height:400px}.portada-numero{right:24px}}

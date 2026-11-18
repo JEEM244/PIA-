@@ -45,6 +45,7 @@ $busqueda = $busqueda ?? '';
             <a class="<?= $paginaActiva === 'historia' ? 'activo' : '' ?>" href="historia.php">Nuestra historia</a>
             <a class="<?= $paginaActiva === 'ventajas' ? 'activo' : '' ?>" href="ventajas.php">¿Por qué elegirnos?</a>
             <a class="<?= $paginaActiva === 'contacto' ? 'activo' : '' ?>" href="contacto.php">Contacto</a>
+            <a href="index.php#ubicacion">Ubicación</a>
             <a class="nav-administracion" href="administracion.php">Administración <span>↗</span></a>
         </div>
     </nav>

@@ -28,11 +28,7 @@ body{margin:0;background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif}
 .catalogo-total{font-size:12px;border:1px solid #000;padding:9px 12px;white-space:nowrap}
 .productos-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .producto{border:1px solid #000;background:#fff;min-width:0}
-.producto-imagen{height:145px;background:#171717;color:#fff;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.producto-imagen:before,.producto-imagen:after{content:"";position:absolute;border:1px solid #777;transform:rotate(45deg);width:125px;height:125px}
-.producto-imagen:after{width:90px;height:90px}
-.producto-imagen>span:first-child{font-size:12px;font-weight:800;letter-spacing:4px;z-index:1}
-.producto-icono{position:absolute;right:12px;bottom:8px;color:#aaa;font-size:22px}
+.producto-imagen{height:145px;background:#fff;border-bottom:1px solid #000}
 .producto-info{padding:17px}
 .producto-info h3{font-size:16px;margin:0 0 9px}
 .producto-descripcion{font-size:12px;color:#444;line-height:1.5;min-height:36px;margin:0 0 17px}

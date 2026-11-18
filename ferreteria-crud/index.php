@@ -23,6 +23,14 @@ $articulos = $pdo->query(
 function h($valor) {
     return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
 }
+
+// Convierte el nombre del artículo en el nombre esperado de su fotografía.
+function slug_imagen($texto) {
+    $texto = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', (string)$texto);
+    $texto = strtolower($texto);
+    $texto = preg_replace('/[^a-z0-9]+/', '-', $texto);
+    return trim($texto, '-');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -71,9 +79,21 @@ function h($valor) {
     <?php else: ?>
       <div class="productos-grid">
         <?php foreach ($articulos as $articulo): ?>
+          <?php
+            // Ejemplo: "Martillo de acero" busca assets/img/productos/martillo-de-acero.jpg
+            $archivoImagen = slug_imagen($articulo['nombre']) . '.jpg';
+            $rutaImagen = __DIR__ . '/assets/img/productos/' . $archivoImagen;
+            $existeImagen = file_exists($rutaImagen);
+          ?>
           <article class="producto">
-            <!-- Espacio reservado para que agregues la fotografía del artículo. -->
-            <div class="producto-imagen"></div>
+            <div class="producto-imagen">
+              <?php if ($existeImagen): ?>
+                <img src="assets/img/productos/<?= h($archivoImagen) ?>" alt="<?= h($articulo['nombre']) ?>">
+              <?php else: ?>
+                <!-- Cuando agregues la foto con el nombre correcto, aparecerá aquí. -->
+                <span>Imagen pendiente</span>
+              <?php endif; ?>
+            </div>
             <div class="producto-info">
               <h3><?= h($articulo['nombre']) ?></h3>
               <p class="producto-descripcion"><?= h($articulo['descripcion'] ?: 'Artículo de ferretería.') ?></p>

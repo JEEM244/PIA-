@@ -13,8 +13,9 @@ Sistema de gestión para **clientes, proveedores, artículos y facturación**, c
 3. Abre phpMyAdmin.
 4. Importa `database/ferreteria.sql`. **Este archivo elimina y vuelve a crear las cuatro tablas**, por lo que debes respaldar los datos anteriores antes de importarlo.
 5. Importa `database/datos_ejemplo.sql` para agregar 10 registros a cada tabla.
-6. Revisa `config/conexion.php`. En XAMPP normalmente el usuario es `root` y la contraseña está vacía.
-7. Abre `http://localhost:8080/PIA-/ferreteria-crud/` si Apache está configurado en el puerto 8080.
+6. Si ya tienes la base de datos creada, importa `database/mejoras_gestion.sql` **una sola vez**. Agrega la papelera y la bitácora de movimientos sin borrar tus registros. Si acabas de importar `ferreteria.sql`, importa también esta mejora antes de entrar a Administración.
+7. Revisa `config/conexion.php`. En XAMPP normalmente el usuario es `root` y la contraseña está vacía.
+8. Abre `http://localhost:8080/PIA-/ferreteria-crud/` si Apache está configurado en el puerto 8080.
 
 ## Estructura de las tablas
 Cada tabla tiene exactamente cinco campos contando el ID:
@@ -26,7 +27,11 @@ Cada tabla tiene exactamente cinco campos contando el ID:
 Las facturas se relacionan con clientes y artículos mediante llaves foráneas.
 
 ## Funciones
-- Agregar, consultar, editar y eliminar registros en las cuatro tablas.
+- Panel de gestión con resumen de datos y actividad reciente.
+- Agregar, consultar y editar registros en las cuatro tablas.
+- Papelera recuperable: los registros se ocultan sin borrarse físicamente y pueden restaurarse.
+- Bitácora de altas, modificaciones, envíos a papelera y restauraciones.
+- Reportes de ventas acumuladas, facturas, promedio, inventario, ventas por mes y artículos más facturados.
 - Catálogo público conectado a MySQL con buscador.
 - Carrusel horizontal de productos destacados e historia de la ferretería.
 - Total de factura capturado directamente en el formulario.
@@ -40,9 +45,13 @@ ferreteria-crud/
 ├── config/conexion.php
 ├── database/
 │   ├── datos_ejemplo.sql
-│   └── ferreteria.sql
+│   ├── ferreteria.sql
+│   └── mejoras_gestion.sql
 ├── eliminar.php
 ├── guardar.php
+├── papelera.php
+├── restaurar.php
+├── reportes.php
 ├── index.php
 └── modulo.php
 ```

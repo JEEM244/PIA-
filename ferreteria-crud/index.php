@@ -24,12 +24,29 @@ function h($valor) {
     return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
 }
 
-// Convierte el nombre del artículo en el nombre esperado de su fotografía.
+// Normaliza nombres para comparar "Martillo de uña" con su archivo de imagen.
 function slug_imagen($texto) {
     $texto = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', (string)$texto);
     $texto = strtolower($texto);
     $texto = preg_replace('/[^a-z0-9]+/', '-', $texto);
     return trim($texto, '-');
+}
+
+// Busca el archivo por su nombre real, conservando espacios, mayúsculas y acentos.
+function buscar_imagen_producto($nombre) {
+    $carpeta = __DIR__ . '/assets/img/productos/';
+    $archivos = glob($carpeta . '*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', GLOB_BRACE);
+    $nombreBuscado = slug_imagen($nombre);
+
+    foreach ($archivos as $archivo) {
+        $nombreArchivo = pathinfo($archivo, PATHINFO_FILENAME);
+
+        if (slug_imagen($nombreArchivo) === $nombreBuscado) {
+            return 'assets/img/productos/' . rawurlencode(basename($archivo));
+        }
+    }
+
+    return null;
 }
 ?>
 <!DOCTYPE html>
@@ -79,18 +96,12 @@ function slug_imagen($texto) {
     <?php else: ?>
       <div class="productos-grid">
         <?php foreach ($articulos as $articulo): ?>
-          <?php
-            // Ejemplo: "Martillo de acero" busca assets/img/productos/martillo-de-acero.jpg
-            $archivoImagen = slug_imagen($articulo['nombre']) . '.jpg';
-            $rutaImagen = __DIR__ . '/assets/img/productos/' . $archivoImagen;
-            $existeImagen = file_exists($rutaImagen);
-          ?>
+          <?php $imagenProducto = buscar_imagen_producto($articulo['nombre']); ?>
           <article class="producto">
             <div class="producto-imagen">
-              <?php if ($existeImagen): ?>
-                <img src="assets/img/productos/<?= h($archivoImagen) ?>" alt="<?= h($articulo['nombre']) ?>">
+              <?php if ($imagenProducto): ?>
+                <img src="<?= h($imagenProducto) ?>" alt="<?= h($articulo['nombre']) ?>" loading="lazy">
               <?php else: ?>
-                <!-- Cuando agregues la foto con el nombre correcto, aparecerá aquí. -->
                 <span>Imagen pendiente</span>
               <?php endif; ?>
             </div>

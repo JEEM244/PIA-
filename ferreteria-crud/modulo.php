@@ -45,7 +45,7 @@ function h($valor) { return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8'
 <html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= h($actual['titulo']) ?> | Ferretería</title><link rel="stylesheet" href="assets/estilos.css"></head>
 <body>
-<header class="topbar"><a class="marca" href="index.php">FERRETERÍA <span>· Sistema de gestión</span></a><a class="volver" href="index.php#administracion">← Panel</a></header>
+<header class="topbar"><a class="marca" href="index.php">FERRETERÍA <span>· Sistema de gestión</span></a><a class="volver" href="administracion.php">← Administración</a></header>
 <main class="contenedor">
   <div class="encabezado-modulo"><div><p class="sobrelinea">ADMINISTRACIÓN</p><h1><?= h($actual['titulo']) ?></h1></div><span class="contador"><?= count($registros) ?> registros</span></div>
   <?php if (!empty($_GET['ok'])): ?><div class="aviso">El registro se guardó correctamente.</div><?php endif; ?>

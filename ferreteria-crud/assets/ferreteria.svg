@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560">
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity=".95" stroke-width="12">
+      <path d="M250 380V190l350-135 350 135v190"/>
+      <path d="M300 205h600v175H300z"/>
+      <path d="M350 250h500M350 300h500M350 350h500"/>
+      <path d="M420 205v175M600 205v175M780 205v175"/>
+      <path d="M480 250v48m-22-24h44M650 250v48m-22-24h44M820 250v48m-22-24h44"/>
+      <path d="M280 410h640"/>
+      <path d="M470 410v-70h260v70"/>
+    </g>
+    <g stroke-width="22">
+      <path d="M130 115l75-55 72 55-42 30-36-20-34 20z"/>
+      <path d="M170 145l120 140"/>
+      <path d="M1050 95l-60 75 35 30 60-75c25 20 60 15 78-10 16-23 10-55-12-70l-42 52-30-24 42-52c-27-13-59-5-75 19-10 15-9 38 4 55z"/>
+      <path d="M990 200L850 365"/>
+    </g>
+    <g stroke-width="10" opacity=".85">
+      <circle cx="190" cy="420" r="58"/><circle cx="190" cy="420" r="25"/>
+      <circle cx="1010" cy="420" r="58"/><circle cx="1010" cy="420" r="25"/>
+      <path d="M390 455h420M430 480h340"/>
+    </g>
+  </g>
+  <g fill="#fff" opacity=".9">
+    <rect x="435" y="90" width="330" height="72" rx="5"/>
+    <path d="M570 108h60l-30-30z"/>
+    <text x="600" y="139" font-family="Arial,sans-serif" font-size="29" font-weight="800" text-anchor="middle" fill="#111">FORJA</text>
+  </g>
+</svg>

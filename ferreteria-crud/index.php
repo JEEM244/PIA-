@@ -113,6 +113,32 @@ require __DIR__ . '/includes/cabecera.php';
             Ver catálogo <span>→</span>
         </a>
     </section>
+
+    <!-- Ubicación de la ferretería. -->
+    <section class="ubicacion contenedor" id="ubicacion">
+        <div class="ubicacion-texto">
+            <p class="sobrelinea">CÓMO LLEGAR</p>
+            <h2>Visítanos</h2>
+            <p>Consulta el mapa para encontrar la ubicación de la ferretería.</p>
+            <a
+                class="ubicacion-enlace"
+                href="https://www.google.com/maps?q=25.685574,-100.213526"
+                target="_blank"
+                rel="noopener noreferrer"
+            >Abrir en Google Maps <span>↗</span></a>
+        </div>
+
+        <div class="ubicacion-mapa">
+            <iframe
+                src="https://www.google.com/maps?q=25.685574,-100.213526&z=16&output=embed"
+                title="Mapa con la ubicación de la ferretería"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+            ></iframe>
+        </div>
+    </section>
+
 </main>
 
 <script>

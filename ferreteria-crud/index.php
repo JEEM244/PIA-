@@ -72,10 +72,8 @@ function h($valor) {
       <div class="productos-grid">
         <?php foreach ($articulos as $articulo): ?>
           <article class="producto">
-            <div class="producto-imagen" aria-hidden="true">
-              <span>FORJA</span>
-              <span class="producto-icono">＋</span>
-            </div>
+            <!-- Espacio reservado para que agregues la fotografía del artículo. -->
+            <div class="producto-imagen"></div>
             <div class="producto-info">
               <h3><?= h($articulo['nombre']) ?></h3>
               <p class="producto-descripcion"><?= h($articulo['descripcion'] ?: 'Artículo de ferretería.') ?></p>

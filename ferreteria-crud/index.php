@@ -5,7 +5,7 @@
       <p class="portada-etiqueta">HERRAMIENTAS · MATERIALES · SOLUCIONES</p>
       <h1>Todo empieza con las herramientas correctas.</h1>
       <p>Encuentra lo necesario para reparar, construir y darle forma a tus proyectos.</p>
-      <a class="boton-principal" href="#productos">Explorar productos <span>→</span></a>
+      <a class="boton-principal" href="catalogo.php">Explorar productos <span>→</span></a>
     </div>
     <span class="portada-indice">FERRETERÍA</span>
   </section><section class="carrusel-seccion contenedor" aria-label="Productos destacados">

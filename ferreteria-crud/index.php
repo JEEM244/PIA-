@@ -68,18 +68,15 @@ function buscar_imagen_producto($nombre) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="FORJA Ferretería: herramientas, materiales y artículos para construcción y reparación.">
-<title>FORJA | Ferretería y materiales</title>
+<meta name="description" content="Ferretería: herramientas, materiales y artículos para construcción y reparación.">
+<title>Ferretería | Herramientas y materiales</title>
 <link rel="stylesheet" href="assets/estilos.css">
 </head>
 <body>
-<div class="franja-superior">FERRETERÍA FORJA <span>·</span> Lo que necesitas para cada proyecto</div>
+<div class="franja-superior">FERRETERÍA <span>·</span> Lo que necesitas para cada proyecto</div>
 
 <header class="encabezado">
-  <a class="marca" href="index.php" aria-label="FORJA, ir al inicio">
-    <span class="marca-simbolo">F</span>
-    <span class="marca-texto">FORJA<small>FERRETERÍA</small></span>
-  </a>
+  <a class="marca" href="index.php">FERRETERÍA</a>
   <form class="buscador" action="index.php" method="get" role="search">
     <input type="search" name="buscar" placeholder="¿Qué herramienta o material buscas?" value="<?= h($busqueda) ?>" aria-label="Buscar productos">
     <button type="submit">Buscar</button>
@@ -91,7 +88,7 @@ function buscar_imagen_producto($nombre) {
   <div class="navegacion-interior">
     <a class="activo" href="index.php">Inicio</a>
     <a href="#productos">Catálogo</a>
-    <a href="#ventajas">¿Por qué FORJA?</a>
+    <a href="#ventajas">¿Por qué elegirnos?</a>
     <a href="#informacion">Contacto</a>
   </div>
 </nav>
@@ -106,7 +103,7 @@ function buscar_imagen_producto($nombre) {
       <p>Encuentra lo necesario para reparar, construir y darle forma a tus proyectos.</p>
       <a class="boton-principal" href="#productos">Explorar productos <span>→</span></a>
     </div>
-    <span class="portada-indice">FORJA / 001</span>
+    <span class="portada-indice">FERRETERÍA</span>
   </section>
 
   <section class="ventajas" id="ventajas">
@@ -148,7 +145,7 @@ function buscar_imagen_producto($nombre) {
               <?php else: ?>
                 <span class="sin-imagen">Imagen no disponible</span>
               <?php endif; ?>
-              <span class="etiqueta-producto">FORJA</span>
+              <span class="etiqueta-producto">FERRETERÍA</span>
             </div>
             <div class="producto-info">
               <h3><?= h($articulo['nombre']) ?></h3>
@@ -199,14 +196,14 @@ function buscar_imagen_producto($nombre) {
 <footer id="informacion">
   <div class="footer-principal">
     <div class="footer-marca">
-      <a class="marca marca-footer" href="index.php"><span class="marca-simbolo">F</span><span class="marca-texto">FORJA<small>FERRETERÍA</small></span></a>
+      <a class="marca marca-footer" href="index.php">FERRETERÍA</a>
       <p>Herramientas y materiales para construir, reparar y crear.</p>
     </div>
     <div class="footer-columna"><strong>Explora</strong><a href="index.php">Inicio</a><a href="#productos">Productos</a><a href="#ventajas">Ventajas</a></div>
     <div class="footer-columna"><strong>Información</strong><span>Catálogo de artículos</span><span>Consulta de existencias</span><span>Precios en pesos mexicanos</span></div>
     <div class="footer-columna footer-admin"><strong>Personal</strong><a href="#administracion">Administración →</a></div>
   </div>
-  <div class="footer-final"><span>© <?= date('Y') ?> FORJA Ferretería. Proyecto académico.</span><span>Construido para cada proyecto.</span></div>
+  <div class="footer-final"><span>© <?= date('Y') ?> Ferretería. Proyecto académico.</span><span>Construido para cada proyecto.</span></div>
 </footer>
 </body>
 </html>

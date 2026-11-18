@@ -24,7 +24,7 @@ function h($valor) {
     return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
 }
 
-// Normaliza nombres para comparar "Martillo de uña" con su archivo de imagen.
+// Normaliza nombres para comparar los nombres de artículos con sus imágenes.
 function slug_imagen($texto) {
     $texto = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', (string)$texto);
     $texto = strtolower($texto);
@@ -32,7 +32,7 @@ function slug_imagen($texto) {
     return trim($texto, '-');
 }
 
-// Busca el archivo por su nombre real, conservando espacios, mayúsculas y acentos.
+// Busca la imagen del producto dentro de la carpeta del catálogo.
 function buscar_imagen_producto($nombre) {
     $carpeta = __DIR__ . '/assets/img/productos/';
     $archivos = glob($carpeta . '*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', GLOB_BRACE);
@@ -69,6 +69,7 @@ function buscar_imagen_producto($nombre) {
 
 <main>
   <section class="portada">
+    <img class="portada-imagen" src="assets/img/ferreteria.jpg" alt="" aria-hidden="true">
     <div class="portada-contenido">
       <p class="portada-etiqueta">FERRETERÍA · SUMINISTROS · HERRAMIENTAS</p>
       <h1>Todo para construir tus ideas.</h1>

@@ -104,7 +104,6 @@ function buscar_imagen_producto($nombre) {
       <span class="contador-productos">SELECCIÓN DE PRODUCTOS</span>
     </div>
     <div class="carrusel-contenedor">
-      <button class="carrusel-flecha anterior" type="button" aria-label="Ver productos anteriores" data-direccion="-1">‹</button>
       <div class="carrusel" id="carrusel-productos">
         <article class="carrusel-tarjeta"><img src="assets/img/productos/Martillo%20de%20u%C3%B1a.jpg" alt="Martillo de uña"><div><strong>Martillo de uña</strong><span>Herramientas manuales</span></div></article>
         <article class="carrusel-tarjeta"><img src="assets/img/productos/Desarmador%20plano.jpg" alt="Desarmador plano"><div><strong>Desarmador plano</strong><span>Herramientas manuales</span></div></article>
@@ -113,9 +112,8 @@ function buscar_imagen_producto($nombre) {
         <article class="carrusel-tarjeta"><img src="assets/img/productos/Pintura%20blanca.jpg" alt="Pintura blanca"><div><strong>Pintura blanca</strong><span>Pinturas y acabados</span></div></article>
         <article class="carrusel-tarjeta"><img src="assets/img/productos/Casco%20de%20seguridad.jpg" alt="Casco de seguridad"><div><strong>Casco de seguridad</strong><span>Equipo de protección</span></div></article>
       </div>
-      <button class="carrusel-flecha siguiente" type="button" aria-label="Ver siguientes productos" data-direccion="1">›</button>
     </div>
-    <p class="carrusel-ayuda">Usa las flechas o desliza para recorrer los productos.</p>
+    <p class="carrusel-ayuda">Los productos avanzan automáticamente. También puedes deslizar para verlos.</p>
   </section>
 
   <section class="catalogo contenedor" id="productos">
@@ -174,15 +172,36 @@ function buscar_imagen_producto($nombre) {
   <div class="footer-final"><span>© <?= date('Y') ?> Ferretería. Proyecto académico.</span><span>Construido para cada proyecto.</span></div>
 </footer>
 <script>
-// Las flechas desplazan el carrusel una tarjeta a la vez.
-document.querySelectorAll('.carrusel-flecha').forEach((boton) => {
-  boton.addEventListener('click', () => {
-    const carrusel = document.getElementById('carrusel-productos');
+// El carrusel avanza una tarjeta cada pocos segundos.
+const carrusel = document.getElementById('carrusel-productos');
+
+if (carrusel && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let pausa = false;
+
+  const avanzarCarrusel = () => {
+    if (pausa) return;
+
     const tarjeta = carrusel.querySelector('.carrusel-tarjeta');
-    const espacio = tarjeta.getBoundingClientRect().width + 15;
-    carrusel.scrollBy({ left: espacio * Number(boton.dataset.direccion), behavior: 'smooth' });
-  });
-});
+    if (!tarjeta) return;
+
+    const estilos = window.getComputedStyle(carrusel);
+    const espacio = tarjeta.getBoundingClientRect().width + parseFloat(estilos.columnGap || 0);
+    const final = carrusel.scrollLeft + carrusel.clientWidth >= carrusel.scrollWidth - 5;
+
+    carrusel.scrollTo({
+      left: final ? 0 : carrusel.scrollLeft + espacio,
+      behavior: 'smooth'
+    });
+  };
+
+  // Se detiene mientras alguien apunta o navega con el teclado por el carrusel.
+  carrusel.addEventListener('mouseenter', () => pausa = true);
+  carrusel.addEventListener('mouseleave', () => pausa = false);
+  carrusel.addEventListener('focusin', () => pausa = true);
+  carrusel.addEventListener('focusout', () => pausa = false);
+
+  window.setInterval(avanzarCarrusel, 3200);
+}
 </script>
 </body>
 </html>

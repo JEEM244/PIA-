@@ -1,14 +1,26 @@
 *{box-sizing:border-box}
-:root{color-scheme:light}
+:root{color-scheme:light;scroll-behavior:smooth}
 body{margin:0;background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif}
 .topbar{min-height:64px;background:#000;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 max(calc((100% - 1120px)/2),24px)}
-.marca{color:#fff;text-decoration:none;font-weight:800;letter-spacing:.7px}
+.marca{color:#fff;text-decoration:none;font-weight:800;letter-spacing:1.5px;font-size:19px}
 .marca span{font-weight:400;color:#fff;font-size:13px;letter-spacing:0}
+.topbar-frase{font-size:10px;letter-spacing:1.8px}
 .volver{color:#fff;text-decoration:none;font-size:14px}
-.contenedor{max-width:1120px;margin:42px auto;padding:0 22px}
+.portada{min-height:470px;background:#111;color:#fff;position:relative;isolation:isolate;display:flex;align-items:center;overflow:hidden;padding:70px max(calc((100% - 1120px)/2),24px)}
+.portada::before{content:"";position:absolute;z-index:-1;inset:0;background:url("ferreteria.svg") center 48%/min(1050px,100%) auto no-repeat;opacity:.24}
+.portada::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,#111 0%,rgba(17,17,17,.92) 42%,rgba(17,17,17,.25) 100%)}
+.portada-contenido{max-width:610px}
+.portada-etiqueta{font-size:10px;font-weight:700;letter-spacing:2.5px;margin:0 0 22px}
+.portada h1{font-size:clamp(38px,6vw,66px);line-height:1.02;letter-spacing:-2.5px;margin:0 0 20px;max-width:600px}
+.portada-contenido>p:not(.portada-etiqueta){color:#ddd;line-height:1.7;max-width:480px;font-size:15px}
+.boton-portada{display:inline-flex;align-items:center;gap:25px;margin-top:20px;padding:14px 19px;background:#fff;color:#000;text-decoration:none;font-size:13px;font-weight:700;transition:background .15s,color .15s}
+.boton-portada:hover{background:#000;color:#fff;outline:1px solid #fff}
+.boton-portada span{font-size:18px}
+.portada-numero{position:absolute;right:max(calc((100% - 1120px)/2),24px);bottom:28px;font-size:10px;letter-spacing:2px;color:#aaa}
+.contenedor{max-width:1120px;margin:58px auto;padding:0 22px;scroll-margin-top:25px}
 .bienvenida{margin-bottom:30px}
 .sobrelinea{font-size:11px;font-weight:700;letter-spacing:2px;color:#000;margin:0 0 10px}
-.bienvenida h1,.encabezado-modulo h1{font-size:34px;margin:0 0 10px;letter-spacing:-1px}
+.bienvenida h1,.bienvenida h2,.encabezado-modulo h1{font-size:34px;margin:0 0 10px;letter-spacing:-1px}
 .bienvenida p:last-child{color:#000;margin:0}
 .tarjetas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .tarjeta,.panel{background:#fff;border:1px solid #000;border-radius:0}
@@ -42,5 +54,5 @@ th{color:#000;font-weight:700;background:#fff}
 .enlace-borrar{border:0;background:none;padding:0;cursor:pointer}
 .aviso{padding:12px 15px;border:1px solid #000;background:#fff;color:#000;margin-bottom:18px;font-size:13px}
 .aviso.error{background:#000;color:#fff}
-@media(max-width:760px){.tarjetas{grid-template-columns:repeat(2,1fr)}.formulario{grid-template-columns:1fr 1fr}.topbar{padding:0 18px}.contenedor{margin:28px auto}}
-@media(max-width:480px){.tarjetas,.formulario{grid-template-columns:1fr}.bienvenida h1,.encabezado-modulo h1{font-size:28px}.marca span{display:none}}
+@media(max-width:760px){.tarjetas{grid-template-columns:repeat(2,1fr)}.formulario{grid-template-columns:1fr 1fr}.topbar{padding:0 18px}.contenedor{margin:38px auto}.portada{min-height:420px;padding:55px 24px}.portada::before{background-position:58% center;opacity:.18}}
+@media(max-width:480px){.tarjetas,.formulario{grid-template-columns:1fr}.bienvenida h1,.bienvenida h2,.encabezado-modulo h1{font-size:28px}.marca span,.topbar-frase{display:none}.portada h1{font-size:42px}.portada{min-height:400px}.portada-numero{right:24px}}

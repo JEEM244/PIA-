@@ -179,19 +179,6 @@ function buscar_imagen_producto($nombre) {
   </section>
 </main>
 
-<footer id="informacion">
-  <div class="footer-principal">
-    <div class="footer-marca">
-      <a class="marca marca-footer" href="index.php"><span class="marca-simbolo">F</span><span class="marca-texto">FORJA<small>FERRETERÍA</small></span></a>
-      <p>Herramientas y materiales para construir, reparar y crear.</p>
-    </div>
-    <div class="footer-columna"><strong>Explora</strong><a href="index.php">Inicio</a><a href="#productos">Productos</a><a href="#ventajas">Ventajas</a></div>
-    <div class="footer-columna"><strong>Información</strong><span>Catálogo de artículos</span><span>Consulta de existencias</span><span>Precios en pesos mexicanos</span></div>
-    <div class="footer-columna footer-admin"><strong>Personal</strong><a href="#administracion">Administración →</a></div>
-  </div>
-  <div class="footer-final"><span>© <?= date('Y') ?> FORJA Ferretería. Proyecto académico.</span><span>Construido para cada proyecto.</span></div>
-</footer>
-
 <section class="administracion contenedor" id="administracion">
   <div class="administracion-cabecera">
     <div><p class="sobrelinea">ACCESO INTERNO</p><h2>Administración de la ferretería</h2><p>Área de gestión de registros e inventario.</p></div>
@@ -208,5 +195,18 @@ function buscar_imagen_producto($nombre) {
   </div>
   <p class="nota">Los datos se almacenan en la base de datos MySQL <b>ferreteria</b>.</p>
 </section>
+
+<footer id="informacion">
+  <div class="footer-principal">
+    <div class="footer-marca">
+      <a class="marca marca-footer" href="index.php"><span class="marca-simbolo">F</span><span class="marca-texto">FORJA<small>FERRETERÍA</small></span></a>
+      <p>Herramientas y materiales para construir, reparar y crear.</p>
+    </div>
+    <div class="footer-columna"><strong>Explora</strong><a href="index.php">Inicio</a><a href="#productos">Productos</a><a href="#ventajas">Ventajas</a></div>
+    <div class="footer-columna"><strong>Información</strong><span>Catálogo de artículos</span><span>Consulta de existencias</span><span>Precios en pesos mexicanos</span></div>
+    <div class="footer-columna footer-admin"><strong>Personal</strong><a href="#administracion">Administración →</a></div>
+  </div>
+  <div class="footer-final"><span>© <?= date('Y') ?> FORJA Ferretería. Proyecto académico.</span><span>Construido para cada proyecto.</span></div>
+</footer>
 </body>
 </html>

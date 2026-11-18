@@ -1,9 +1,9 @@
-<?php $paginaActiva='historia'; $tituloPagina='Ferretería | Nuestra historia'; require __DIR__.'/includes/cabecera.php'; ?><main class="pagina-interior"><section class="pagina-titulo contenedor"><p class="sobrelinea">QUIÉNES SOMOS</p><h1>Nuestra historia</h1><p>Una ferretería hecha para ayudar a construir.</p></section><section class="historia contenedor" id="historia">
+<?php $paginaActiva='historia'; $tituloPagina='Ferretería | Nuestra historia'; require __DIR__.'/includes/cabecera.php'; ?><main class="pagina-interior"><section class="pagina-titulo contenedor"><p class="sobrelinea">LA FERRETERÍA</p><h1>Nuestra historia</h1><p>Herramientas y materiales para el trabajo diario.</p></section><section class="historia contenedor" id="historia">
     <div class="historia-texto">
-      <p class="sobrelinea">QUIÉNES SOMOS</p>
-      <h2>Una ferretería hecha para ayudar a construir.</h2>
-      <p>Nacimos como un negocio local con una idea sencilla: acercar herramientas y materiales confiables a las personas que reparan, construyen y mejoran sus espacios.</p>
-      <p>Con el paso del tiempo ampliamos nuestro catálogo para atender tanto pequeñas reparaciones del hogar como proyectos de mantenimiento y construcción. Nuestro compromiso es ofrecer productos útiles, precios claros y una atención cercana.</p>
+      <p class="sobrelinea">LA FERRETERÍA</p>
+      <h2>Herramientas y materiales para el trabajo diario.</h2>
+      <p>En una ferretería, cada trabajo empieza por encontrar la pieza, herramienta o material adecuado. Por eso reunimos artículos para reparaciones, mantenimiento y construcción.</p>
+      <p>En el catálogo puedes revisar qué artículos están registrados, cuánto cuestan y cuántas piezas hay disponibles.</p>
     </div>
-    <div class="historia-dato"><span>DESDE NUESTROS INICIOS</span><strong>Tu proyecto<br>es nuestra prioridad.</strong><small>Una empresa ficticia creada como parte de un proyecto académico.</small></div>
-  </section><section class="historia-extra contenedor"><h2>Una idea sencilla que sigue creciendo.</h2><p>Esta ferretería ficticia forma parte de un proyecto académico. Su propósito es representar un negocio local que organiza sus productos, inventario, clientes y proveedores mediante un sistema web.</p><a class="boton" href="catalogo.php">Conocer el catálogo →</a></section></main><?php require __DIR__.'/includes/pie.php'; ?>
+    <div class="historia-dato"><span>EN EL CATÁLOGO</span><strong>Herramientas<br>para cada tarea.</strong><small></small></div>
+  </section><section class="historia-extra contenedor"><h2>Lo que puedes encontrar</h2><p>El catálogo reúne herramientas y materiales de uso común. También se lleva un registro de clientes, proveedores, artículos y facturas.</p><a class="boton" href="catalogo.php">Ver artículos →</a></section></main><?php require __DIR__.'/includes/pie.php'; ?>

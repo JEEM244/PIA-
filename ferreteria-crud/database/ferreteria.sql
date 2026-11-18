@@ -1,46 +1,47 @@
--- Base de datos para el sistema CRUD de Ferreteria
+-- Estructura de la base de datos Ferreteria.
+-- Cada tabla tiene exactamente cinco campos contando el ID.
+-- Este archivo reconstruye las tablas: respalda tu base de datos antes de importarlo.
+
 CREATE DATABASE IF NOT EXISTS ferreteria CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE ferreteria;
 
-CREATE TABLE IF NOT EXISTS clientes (
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS facturas;
+DROP TABLE IF EXISTS articulos;
+DROP TABLE IF EXISTS clientes;
+DROP TABLE IF EXISTS proveedores;
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE clientes (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
   telefono VARCHAR(20),
   correo VARCHAR(120),
-  direccion VARCHAR(180),
-  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  direccion VARCHAR(180)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS proveedores (
+CREATE TABLE proveedores (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
   telefono VARCHAR(20),
   correo VARCHAR(120),
-  direccion VARCHAR(180),
-  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  direccion VARCHAR(180)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS articulos (
+CREATE TABLE articulos (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(120) NOT NULL,
   descripcion VARCHAR(255),
   precio DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-  existencia INT NOT NULL DEFAULT 0,
-  proveedor_id INT NULL,
-  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_articulo_proveedor FOREIGN KEY (proveedor_id) REFERENCES proveedores(id)
-    ON UPDATE CASCADE ON DELETE SET NULL
+  existencia INT NOT NULL DEFAULT 0
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS facturas (
+CREATE TABLE facturas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   cliente_id INT NOT NULL,
   articulo_id INT NOT NULL,
   fecha DATE NOT NULL,
-  cantidad INT NOT NULL,
-  precio_unitario DECIMAL(10,2) NOT NULL,
-  total DECIMAL(10,2) GENERATED ALWAYS AS (cantidad * precio_unitario) STORED,
-  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
   CONSTRAINT fk_factura_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(id)
     ON UPDATE CASCADE ON DELETE RESTRICT,
   CONSTRAINT fk_factura_articulo FOREIGN KEY (articulo_id) REFERENCES articulos(id)

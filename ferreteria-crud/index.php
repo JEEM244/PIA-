@@ -103,15 +103,19 @@ function buscar_imagen_producto($nombre) {
       <div><p class="sobrelinea">UNA MIRADA AL CATÁLOGO</p><h2>Productos destacados</h2><p>Algunas herramientas y materiales que puedes encontrar.</p></div>
       <span class="contador-productos">SELECCIÓN DE PRODUCTOS</span>
     </div>
-    <div class="carrusel">
-      <article class="carrusel-tarjeta"><img src="assets/img/productos/Martillo%20de%20u%C3%B1a.jpg" alt="Martillo de uña"><div><strong>Martillo de uña</strong><span>Herramientas manuales</span></div></article>
-      <article class="carrusel-tarjeta"><img src="assets/img/productos/Desarmador%20plano.jpg" alt="Desarmador plano"><div><strong>Desarmador plano</strong><span>Herramientas manuales</span></div></article>
-      <article class="carrusel-tarjeta"><img src="assets/img/productos/Pinzas%20de%20electricista.jpg" alt="Pinzas de electricista"><div><strong>Pinzas de electricista</strong><span>Instalación y reparación</span></div></article>
-      <article class="carrusel-tarjeta"><img src="assets/img/productos/Juego%20de%20llaves.jpg" alt="Juego de llaves"><div><strong>Juego de llaves</strong><span>Herramientas manuales</span></div></article>
-      <article class="carrusel-tarjeta"><img src="assets/img/productos/Pintura%20blanca.jpg" alt="Pintura blanca"><div><strong>Pintura blanca</strong><span>Pinturas y acabados</span></div></article>
-      <article class="carrusel-tarjeta"><img src="assets/img/productos/Casco%20de%20seguridad.jpg" alt="Casco de seguridad"><div><strong>Casco de seguridad</strong><span>Equipo de protección</span></div></article>
+    <div class="carrusel-contenedor">
+      <button class="carrusel-flecha anterior" type="button" aria-label="Ver productos anteriores" data-direccion="-1">‹</button>
+      <div class="carrusel" id="carrusel-productos">
+        <article class="carrusel-tarjeta"><img src="assets/img/productos/Martillo%20de%20u%C3%B1a.jpg" alt="Martillo de uña"><div><strong>Martillo de uña</strong><span>Herramientas manuales</span></div></article>
+        <article class="carrusel-tarjeta"><img src="assets/img/productos/Desarmador%20plano.jpg" alt="Desarmador plano"><div><strong>Desarmador plano</strong><span>Herramientas manuales</span></div></article>
+        <article class="carrusel-tarjeta"><img src="assets/img/productos/Pinzas%20de%20electricista.jpg" alt="Pinzas de electricista"><div><strong>Pinzas de electricista</strong><span>Instalación y reparación</span></div></article>
+        <article class="carrusel-tarjeta"><img src="assets/img/productos/Juego%20de%20llaves.jpg" alt="Juego de llaves"><div><strong>Juego de llaves</strong><span>Herramientas manuales</span></div></article>
+        <article class="carrusel-tarjeta"><img src="assets/img/productos/Pintura%20blanca.jpg" alt="Pintura blanca"><div><strong>Pintura blanca</strong><span>Pinturas y acabados</span></div></article>
+        <article class="carrusel-tarjeta"><img src="assets/img/productos/Casco%20de%20seguridad.jpg" alt="Casco de seguridad"><div><strong>Casco de seguridad</strong><span>Equipo de protección</span></div></article>
+      </div>
+      <button class="carrusel-flecha siguiente" type="button" aria-label="Ver siguientes productos" data-direccion="1">›</button>
     </div>
-    <p class="carrusel-ayuda">Desliza horizontalmente para ver más productos.</p>
+    <p class="carrusel-ayuda">Usa las flechas o desliza para recorrer los productos.</p>
   </section>
 
   <section class="catalogo contenedor" id="productos">
@@ -169,5 +173,16 @@ function buscar_imagen_producto($nombre) {
   </div>
   <div class="footer-final"><span>© <?= date('Y') ?> Ferretería. Proyecto académico.</span><span>Construido para cada proyecto.</span></div>
 </footer>
+<script>
+// Las flechas desplazan el carrusel una tarjeta a la vez.
+document.querySelectorAll('.carrusel-flecha').forEach((boton) => {
+  boton.addEventListener('click', () => {
+    const carrusel = document.getElementById('carrusel-productos');
+    const tarjeta = carrusel.querySelector('.carrusel-tarjeta');
+    const espacio = tarjeta.getBoundingClientRect().width + 15;
+    carrusel.scrollBy({ left: espacio * Number(boton.dataset.direccion), behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>

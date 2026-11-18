@@ -10,11 +10,15 @@ if (!in_array($tabla, $tablas, true) || $id < 1) {
 }
 
 try {
-    $consulta = $pdo->prepare("DELETE FROM $tabla WHERE id = ?");
+    // Papelera lógica: conserva el registro y permite restaurarlo.
+    $consulta = $pdo->prepare("UPDATE $tabla SET eliminado_en = NOW() WHERE id = ? AND eliminado_en IS NULL");
     $consulta->execute([$id]);
-    header("Location: modulo.php?tabla=$tabla&ok=1");
+    if ($consulta->rowCount()) {
+        $log = $pdo->prepare("INSERT INTO movimientos (tipo, tabla_afectada, registro_id, descripcion) VALUES ('Papelera', ?, ?, ?)");
+        $log->execute([$tabla, $id, "Se envió un registro de $tabla a la papelera"]);
+    }
+    header("Location: modulo.php?tabla=$tabla&papelera=1");
 } catch (PDOException $error) {
-    // MySQL impedirá borrar clientes o artículos que ya estén ligados a una factura.
     header("Location: modulo.php?tabla=$tabla&error=1");
 }
 exit;

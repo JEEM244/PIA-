@@ -1,13 +1,14 @@
 <?php
-// Conexion principal a MySQL. Ajusta estos datos si tu instalacion usa otros valores.
+// Datos para conectarse a la base de datos local.
 $host = 'localhost';
 $usuario = 'root';
 $contrasena = '';
-$base_datos = 'ferreteria';
+$baseDatos = 'ferreteria';
 
 try {
+    // PDO permite ejecutar consultas preparadas y manejar errores de MySQL.
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$base_datos;charset=utf8mb4",
+        "mysql:host=$host;dbname=$baseDatos;charset=utf8mb4",
         $usuario,
         $contrasena,
         [
@@ -17,5 +18,6 @@ try {
         ]
     );
 } catch (PDOException $error) {
+    // No mostramos datos internos de la conexión en pantalla.
     exit('No se pudo conectar con la base de datos. Revisa config/conexion.php y que MySQL esté iniciado.');
 }

@@ -13,9 +13,13 @@ if ($busqueda !== '') {
     $parametros = [];
 
     foreach ($terminos as $indice => $termino) {
-        $marcador = ':termino' . $indice;
-        $condiciones[] = "(nombre LIKE $marcador OR descripcion LIKE $marcador)";
-        $parametros['termino' . $indice] = '%' . $termino . '%';
+        // PDO necesita marcadores distintos para cada aparición del valor.
+        $marcadorNombre = ':nombre' . $indice;
+        $marcadorDescripcion = ':descripcion' . $indice;
+        $condiciones[] = "(nombre LIKE $marcadorNombre OR descripcion LIKE $marcadorDescripcion)";
+        $valor = '%' . $termino . '%';
+        $parametros['nombre' . $indice] = $valor;
+        $parametros['descripcion' . $indice] = $valor;
     }
 
     $sql = "SELECT id, nombre, descripcion, precio, existencia

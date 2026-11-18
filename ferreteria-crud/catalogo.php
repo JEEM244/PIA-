@@ -3,16 +3,28 @@ require_once __DIR__ . '/config/conexion.php';
 
 $paginaActiva = 'catalogo';
 $tituloPagina = 'Ferretería | Catálogo';
-$busqueda = trim($_GET['buscar'] ?? '');
+$busqueda = trim(preg_replace('/\\s+/', ' ', $_GET['buscar'] ?? ''));
 
 if ($busqueda !== '') {
-    $consulta = $pdo->prepare(
-        "SELECT id, nombre, descripcion, precio, existencia
-         FROM articulos
-         WHERE nombre LIKE :buscar OR descripcion LIKE :buscar
-         ORDER BY nombre ASC"
-    );
-    $consulta->execute(['buscar' => '%' . $busqueda . '%']);
+    // Cada palabra debe aparecer en el nombre o en la descripción.
+    // Así también funcionan búsquedas como "martillo acero".
+    $terminos = preg_split('/\\s+/', $busqueda, -1, PREG_SPLIT_NO_EMPTY);
+    $condiciones = [];
+    $parametros = [];
+
+    foreach ($terminos as $indice => $termino) {
+        $marcador = ':termino' . $indice;
+        $condiciones[] = "(nombre LIKE $marcador OR descripcion LIKE $marcador)";
+        $parametros['termino' . $indice] = '%' . $termino . '%';
+    }
+
+    $sql = "SELECT id, nombre, descripcion, precio, existencia
+            FROM articulos
+            WHERE " . implode(' AND ', $condiciones) . "
+            ORDER BY nombre ASC";
+
+    $consulta = $pdo->prepare($sql);
+    $consulta->execute($parametros);
     $articulos = $consulta->fetchAll();
 } else {
     $articulos = $pdo->query(

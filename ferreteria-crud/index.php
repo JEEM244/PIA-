@@ -12,6 +12,17 @@ $conteos = [];
 foreach ($modulos as $tabla => $datos) {
     $conteos[$tabla] = (int) $pdo->query("SELECT COUNT(*) FROM $tabla")->fetchColumn();
 }
+
+// El catálogo público obtiene los artículos directamente de MySQL.
+$articulos = $pdo->query(
+    "SELECT nombre, descripcion, precio, existencia
+     FROM articulos
+     ORDER BY nombre ASC"
+)->fetchAll();
+
+function h($valor) {
+    return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,6 +35,10 @@ foreach ($modulos as $tabla => $datos) {
 <body>
 <header class="topbar">
   <a class="marca" href="index.php">FORJA <span>· Ferretería</span></a>
+  <nav class="menu-publico">
+    <a href="#productos">Productos</a>
+    <a href="#modulos">Administración</a>
+  </nav>
   <span class="topbar-frase">HERRAMIENTAS PARA HACERLO REALIDAD</span>
 </header>
 
@@ -33,24 +48,65 @@ foreach ($modulos as $tabla => $datos) {
       <p class="portada-etiqueta">FERRETERÍA · SUMINISTROS · HERRAMIENTAS</p>
       <h1>Todo para construir tus ideas.</h1>
       <p>Encuentra herramientas, materiales y soluciones para tus proyectos. En FORJA, cada trabajo comienza con lo necesario.</p>
-      <a class="boton-portada" href="#modulos">Explorar catálogo <span>→</span></a>
+      <a class="boton-portada" href="#productos">Ver productos <span>→</span></a>
     </div>
     <span class="portada-numero">01 / FORJA</span>
   </section>
 
-  <div class="contenedor" id="modulos">
+  <section class="catalogo contenedor" id="productos">
+    <div class="catalogo-encabezado">
+      <div>
+        <p class="sobrelinea">CATÁLOGO FORJA</p>
+        <h2>Productos disponibles</h2>
+        <p>Conoce algunos de los artículos que tenemos para tus proyectos.</p>
+      </div>
+      <span class="catalogo-total"><?= count($articulos) ?> artículos</span>
+    </div>
+
+    <?php if (!$articulos): ?>
+      <div class="catalogo-vacio">
+        <h3>Próximamente tendremos productos.</h3>
+        <p>Estamos preparando nuestro catálogo. Vuelve pronto.</p>
+      </div>
+    <?php else: ?>
+      <div class="productos-grid">
+        <?php foreach ($articulos as $articulo): ?>
+          <article class="producto">
+            <div class="producto-imagen" aria-hidden="true">
+              <span>FORJA</span>
+              <span class="producto-icono">＋</span>
+            </div>
+            <div class="producto-info">
+              <h3><?= h($articulo['nombre']) ?></h3>
+              <p class="producto-descripcion"><?= h($articulo['descripcion'] ?: 'Artículo de ferretería.') ?></p>
+              <div class="producto-pie">
+                <strong>$<?= number_format((float)$articulo['precio'], 2) ?></strong>
+                <?php if ((int)$articulo['existencia'] > 0): ?>
+                  <span class="disponible">Disponible · <?= (int)$articulo['existencia'] ?></span>
+                <?php else: ?>
+                  <span class="agotado">Agotado</span>
+                <?php endif; ?>
+              </div>
+            </div>
+          </article>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+  </section>
+
+  <div class="contenedor administracion" id="modulos">
     <section class="bienvenida">
-      <p class="sobrelinea">ADMINISTRACIÓN DEL NEGOCIO</p>
-      <h2>Panel de control</h2>
-      <p>Consulta y administra la información de tu ferretería desde un solo lugar.</p>
+      <p class="sobrelinea">ÁREA INTERNA</p>
+      <h2>Panel de administración</h2>
+      <p>Gestiona los clientes, proveedores, artículos y facturas de la ferretería.</p>
     </section>
 
     <section class="tarjetas">
       <?php foreach ($modulos as $tabla => $datos): ?>
-        <a class="tarjeta" href="modulo.php?tabla=<?= htmlspecialchars($tabla) ?>">
-          <span class="tarjeta-etiqueta"><?= htmlspecialchars($datos[0]) ?></span>
+        <a class="tarjeta" href="modulo.php?tabla=<?= h($tabla) ?>">
+          <span class="tarjeta-etiqueta"><?= h($datos[0]) ?></span>
           <strong><?= $conteos[$tabla] ?></strong>
-          <small><?= htmlspecialchars($datos[1]) ?></small>
+          <small><?= h($datos[1]) ?></small>
           <span class="ir">Abrir módulo →</span>
         </a>
       <?php endforeach; ?>
@@ -59,6 +115,6 @@ foreach ($modulos as $tabla => $datos) {
   </div>
 </main>
 
-<footer>FORJA · Proyecto CRUD con PHP y MySQL</footer>
+<footer>FORJA · Ferretería</footer>
 </body>
 </html>

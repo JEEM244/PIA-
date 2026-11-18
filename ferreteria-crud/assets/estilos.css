@@ -10,8 +10,8 @@ body{margin:0;background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif}
 .menu-publico a:hover{text-decoration:underline}
 .volver{color:#fff;text-decoration:none;font-size:14px}
 .portada{min-height:470px;background:#111;color:#fff;position:relative;isolation:isolate;display:flex;align-items:center;overflow:hidden;padding:70px max(calc((100% - 1120px)/2),24px)}
-/* IMAGEN PRINCIPAL: coloca tu archivo en assets/img/portada.jpg */
-.portada::before{content:"";position:absolute;z-index:-1;inset:0;background:url("img/portada.jpg") center 48%/cover no-repeat;opacity:.24}
+/* Imagen principal de la ferretería */
+.portada::before{content:"";position:absolute;z-index:-1;inset:0;background:url("img/ferreteria.jpg") center 48%/cover no-repeat;opacity:.24}
 .portada::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,#111 0%,rgba(17,17,17,.92) 42%,rgba(17,17,17,.25) 100%)}
 .portada-contenido{max-width:610px}
 .portada-etiqueta{font-size:10px;font-weight:700;letter-spacing:2.5px;margin:0 0 22px}

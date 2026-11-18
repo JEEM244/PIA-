@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__ . '/config/conexion.php';
 
+// Solo se aceptan tablas y campos definidos aquí.
 $config = [
  'clientes'=>['nombre','telefono','correo','direccion'],
  'proveedores'=>['nombre','telefono','correo','direccion'],
- 'articulos'=>['nombre','descripcion','precio','existencia','proveedor_id'],
- 'facturas'=>['cliente_id','articulo_id','fecha','cantidad','precio_unitario']
+ 'articulos'=>['nombre','descripcion','precio','existencia'],
+ 'facturas'=>['cliente_id','articulo_id','fecha','total']
 ];
 $tabla = $_POST['tabla'] ?? '';
 if (!isset($config[$tabla])) { http_response_code(400); exit('Módulo inválido.'); }
